@@ -13,6 +13,25 @@ const resolvers = {
     authors() {
       return db.authors;
     },
+
+    review(parent,args,context){
+        // .find method will return the first element that satisfies the return expression
+        return db.reviews.find((review)=>{
+            return review.id ==args.id 
+        })
+    },
+    game(parent,args,context){
+        // .find method will return the first element that satisfies the return expression
+        return db.games.find((game)=>{
+            return game.id ==args.id 
+        })
+    },
+    author(parent,args,context){
+        // .find method will return the first element that satisfies the return expression
+        return db.authors.find((author)=>{
+            return author.id ==args.id 
+        })
+    }
   },
 };
 const server = new ApolloServer({
