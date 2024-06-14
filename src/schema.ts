@@ -1,4 +1,3 @@
-
 /* there are 5 scalar types in graphql but you can build custom types
 Int ->whole numbers
 Float -> decimal point numbers
@@ -12,16 +11,22 @@ add ! after the end of the type to make it mandatory
 [String!], it means that the list itself can be null, 
 but it can't have any null values in it. If you use ! after both the type and the list (like [String!]!), it means both the list and the items in the list will never be null.
 */
-const typeDefs = `#graphql
+export const typeDefs = `#graphql
 type Review{
 id:ID!
+title:String
+platform : [String!]!
 
 }
 type Game{
-
+id:ID!
+rating:Int!
+content:String!
 }
 type Author {
-
+    id:ID!
+name:String!
+verified:Boolean!
 }
 
 type Query{
@@ -29,5 +34,5 @@ reviews:[Review]
 games:[Game]
 authors:[Author]
 }
-`
+`;
 // type Query is mandatory you define main entrypoints to the graphql server
