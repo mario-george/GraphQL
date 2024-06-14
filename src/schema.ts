@@ -12,13 +12,13 @@ add ! after the end of the type to make it mandatory
 but it can't have any null values in it. If you use ! after both the type and the list (like [String!]!), it means both the list and the items in the list will never be null.
 */
 export const typeDefs = `#graphql
-type Review{
+type Game{
 id:ID!
 title:String
 platform : [String!]!
 
 }
-type Game{
+type Review{
 id:ID!
 rating:Int!
 content:String!
@@ -33,6 +33,9 @@ type Query{
 reviews:[Review]
 games:[Game]
 authors:[Author]
+review(id:ID!):Review
+game(id:ID!):Game
+author(id:ID!):Author
 }
 `;
 // type Query is mandatory you define main entrypoints to the graphql server
