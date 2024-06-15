@@ -14,19 +14,23 @@ but it can't have any null values in it. If you use ! after both the type and th
 export const typeDefs = `#graphql
 type Game{
 id:ID!
-title:String
+title:String!
 platform : [String!]!
-
+reviews:[String!]
 }
 type Review{
 id:ID!
 rating:Int!
 content:String!
+game:Game!
+author:Author!
+
 }
 type Author {
     id:ID!
 name:String!
 verified:Boolean!
+reviews:[Review!]
 }
 
 type Query{
@@ -36,6 +40,20 @@ authors:[Author]
 review(id:ID!):Review
 game(id:ID!):Game
 author(id:ID!):Author
+}
+type Mutation{
+    deleteGame(id:ID!):[Game]
+    addGame(game:AddGameInput!):Game
+    editGame(id:ID!,edits:EditGameInput!):Game
+
+}
+input AddGameInput{
+    title : String!
+    platform:[String!]!
+}
+input EditGameInput{
+    title:String
+    platform:[String!]
 }
 `;
 // type Query is mandatory you define main entrypoints to the graphql server
